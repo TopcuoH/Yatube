@@ -23,18 +23,6 @@ def index(request):
     return render(request, template, context)
 
 
-# Страница со списком груп
-def group_list(request):
-    template = 'posts/group_list.html'
-    title = 'Лев Толстой – зеркало русской революции.'
-    context = {
-        'title': title,
-        'text': 'Здесь будет информация о группах проекта Yatube'
-    }
-    # Формируем шаблон
-    return render(request, template, context)
-
-
 # view-функция принимает параметр pk из path()
 def group_posts(request, slug):
     # Функция get_object_or_404 получает по заданным критериям объект
@@ -48,7 +36,7 @@ def group_posts(request, slug):
     # условия WHERE group_id = {group_id}
     posts = Post.objects.filter(group=group).order_by('-pub_date')[:10]
     template = 'posts/group_list.html'
-    text = (f'Посты группы {slug}')
+    text = (f'Записи сообщества {slug}')
     context = {
         'text': text,
         'title': text,
